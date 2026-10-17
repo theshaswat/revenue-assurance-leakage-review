@@ -42,6 +42,16 @@ Olist has no price list, discount policy or invoice table. The settings below ar
 - Price tolerance is plus or minus 10%. Moving it to 5% gives R$ 30,525 of pricing leakage; 20% gives R$ 6,929.
 - Voucher cap is 10% of the order. At 5% the discount figure is R$ 319,071; at 20% it is R$ 251,527.
 
+To confirm you hold the same files, run `shasum -a 256 -c data/SHA256SUMS`.
+
+## Tests
+
+```
+pytest -q
+```
+
+`tests/test_analysis.py` builds a small set of orders with one planted case per leakage type and asserts the reconciliation finds exactly those amounts. It runs in CI on every push. It proves the logic; the full-data result is the one in the report.
+
 Limits: list price is observed, not contractual. Credit notes and reason codes are not in the data and are not tested.
 
 ## Data
